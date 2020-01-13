@@ -1,0 +1,412 @@
+﻿# Rime schema
+# encoding: utf-8
+
+schema:
+  schema_id: soengping_ipa
+  name: "粵語雙拼 IPA"
+  version: "2020.01.14"
+  author:
+    - "sgal <1727246457@qq.com>"
+    - "LeiMaau <leimaau@qq.com>"
+    - "laubonghaudoi <laubonghaudoi@icloud.com>"
+    - "Over-There-Is <1918301767@qq.com>"
+  description: |
+    "基于sgalal、狸猫、刘邦后代等人粤拼词库的粤语双拼输入方案"
+    "採用『1993年香港語言學學會粵語拼音方案』"
+    "https://www.lshk.org/jyutping"
+    "提供兩種反查方案，[`]鍵可以同時用倉頡及普拼反查粵拼，[`C]鍵單獨用倉頡反查粵拼，[`P]鍵單獨用普拼反查粵拼"
+    "PC上按Ctrl+Enter可將提示音上屏，按Ctrl+Shift+Enter可將候選項上屏"
+    "原項目主頁 https://github.com/rime/rime-cantonese"
+    "雙拼項目主頁 https://github.com/Over-There-Is/Rime-Soengping/"
+    "碼表詳見主頁"
+  dependencies:
+    - cangjie5
+    - luna_pinyin
+    - jyut6ping3
+
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [ 中文, 英文 ]
+  - name: full_shape
+    states: [ 半角, 全角 ]
+  - name: simplification  # 若開啓多字形此段可註釋
+    states: [ 傳統, 简体 ]
+  - name: extended_charset
+    reset: 1
+    states: [ 常用, 增廣 ]
+  - name: ascii_punct
+    states: [ 。，, ．， ]
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - matcher
+    - affix_segmentor@cangjie5
+    - affix_segmentor@pinyin
+    - affix_segmentor@reverse_lookup
+    - affix_segmentor@cangjie5_lookup
+    - affix_segmentor@pinyin_lookup
+    - ascii_segmentor
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - script_translator@cangjie5
+    - script_translator@pinyin
+    - reverse_lookup_translator@cangjie5_lookup
+    - reverse_lookup_translator@pinyin_lookup
+    - punct_translator
+    - script_translator
+    - reverse_lookup_translator
+  filters:
+    - simplifier
+    - uniquifier
+    - reverse_lookup_filter@cangjie5_reverse_lookup
+    - reverse_lookup_filter@pinyin_reverse_lookup
+
+speller:
+  alphabet: zyxwvutsrqponmlkjihgfedcba;
+  initials: zyxvutsrponmlkjihgfdcba
+  delimiter: " '"
+  algebra:
+    - xform/^(m|ng)([1-6])/$1i$1$2/
+    - xform/^hm/mip/
+    - xform/^hng/ngik/
+    - xform/([ptk])([12])/$1EQ/
+    - xform/([ptk])3/$1EW/
+    - xform/([ptk])6/$1EE/
+    - xform/pE/mE/
+    - xform/tE/nE/
+    - xform/kE/ngE/
+    - xform/1/QQ/
+    - xform/2/QW/
+    - xform/3/QE/
+    - xform/4/WQ/
+    - xform/5/WW/
+    - xform/6/WE/
+    - xform/^([aeiouy])/L$1/
+    - xform/^b/R/
+    - xform/^p/T/
+    - xform/^m/Y/
+    - xform/^f/U/
+    - xform/^d/F/
+    - xform/^t/G/
+    - xform/^n([aeiouy])/H$1/
+    - xform/^l/J/
+    - xform/^g([aeioy])/V$1/
+    - xform/^k([aeioy])/B$1/
+    - xform/^g(u)/P$1/
+    - xform/^k(u)/O$1/
+    - xform/^ng/N/
+    - xform/^h/M/
+    - xform/^gw/P/
+    - xform/^kw/O/
+    - xform/^w/I/
+    - xform/^z(y)/Z$1/
+    - xform/^c(y)/C$1/
+    - xform/^s([iy]|oe)/X$1/
+    - xform/^z([aeiou])/A$1/
+    - xform/^c([aeiou])/D$1/
+    - xform/^s([aeou])/S$1/
+    - xform/^j/K/
+    - xform/aang/C/
+    - xform/oeng/B/
+    - xform/aai/K/
+    - xform/aam/E/
+    - xform/aan/D/
+    - xform/aau/I/
+    - xform/ang/X/
+    - xform/eng/V/
+    - xform/eoi/J/
+    - xform/eon/F/
+    - xform/ing/Z/
+    - xform/oen/G/
+    - xform/ong/N/
+    - xform/ung/M/
+    - xform/yun/G/
+    - xform/aa/R/
+    - xform/ai/L/
+    - xform/am/W/
+    - xform/an/S/
+    - xform/au/O/
+    - xform/ei/;/
+    - xform/em/Q/
+    - xform/en/A/
+    - xform/eu/P/
+    - xform/im/Q/
+    - xform/in/A/
+    - xform/iu/P/
+    - xform/oe/T/
+    - xform/oi/H/
+    - xform/on/F/
+    - xform/ou/U/
+    - xform/ui/J/
+    - xform/un/F/
+    - xform/yu/U/
+    - xform/e/T/
+    - xform/i/;/
+    - xform/o/Y/
+    - xform/u/U/
+    - xlit/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/
+    - derive/^v([beighopqvw])/p$1/
+    - derive/^b([abeighopqtvwy;])/o$1/
+    - derive/^p(m)/v$1/
+    - derive/^o([fmu])/b$1/
+    - derive/^z([abgpqz;])/a$1/
+    - derive/^c([abgpqz;])/d$1/
+    - derive/^x([abgpqz])/s$1/
+    - derive/^a([cdefhijklmnorstvwxy])/z$1/
+    - derive/^d([cdefhijklmnorstvwxy])/c$1/
+    - derive/^s([cdefhijklmnorsvwxy])/x$1/
+    - derive/^([a-z|;]{2}).+$/$1/
+    - derive/^([a-z|;]{3}).+$/$1/
+
+
+menu:
+  alternative_select_keys: "123456789"
+  page_size: 9  # 候選詞數
+
+translator:
+  dictionary: jyut6ping3
+  prism: soengping_ipa
+  spelling_hints: 7  # 標註拼音的字數，建議橫排顯示時設置爲1
+  preedit_format:
+    - xform/(\w);/$1V/
+    - xform/(\w\w)qq/$1¹/
+    - xform/(\w\w)qw/$1²/
+    - xform/(\w\w)qe/$1³/
+    - xform/(\w\w)wq/$1⁴/
+    - xform/(\w\w)ww/$1⁵/
+    - xform/(\w\w)we/$1⁶/
+    - xform/(\w\w)eq/$1X¹/
+    - xform/(\w\w)ew/$1X³/
+    - xform/(\w\w)ee/$1X⁶/
+    - xform/(\w\w)q/$1¹/
+    - xform/(\w\w)w/$1⁴/
+    - xform/(\w\w)e/$1X/
+    - xform/(\w)a/$1IN/
+    - xform/(\w)b/$1OENG/
+    - xform/(\w)c/$1AANG/
+    - xform/(\w)d/$1AAN/
+    - xform/(\w)e/$1AAM/
+    - xform/([lmnv])f/$1ON/
+    - xform/([bioprtuy])f/$1UN/
+    - xform/(\w)f/$1EON/
+    - xform/(\w)g/$1YUN/
+    - xform/(\w)h/$1OI/
+    - xform/(\w)i/$1AAU/
+    - xform/([ioprtuy])j/$1UI/
+    - xform/(\w)j/$1EOI/
+    - xform/(\w)k/$1AAI/
+    - xform/(\w)l/$1AI/
+    - xform/(\w)m/$1UNG/
+    - xform/(\w)n/$1ONG/
+    - xform/(\w)o/$1AU/
+    - xform/(\w)p/$1IU/
+    - xform/(\w)q/$1IM/
+    - xform/(\w)r/$1AA/
+    - xform/(\w)s/$1AN/
+    - xform/([x])t/$1OE/
+    - xform/(\w)t/$1E/
+    - xform/([bioup])u/$1U/
+    - xform/([ckxz])u/$1YU/
+    - xform/(\w)u/$1OU/
+    - xform/(\w)v/$1ENG/
+    - xform/(\w)w/$1AM/
+    - xform/(\w)x/$1ANG/
+    - xform/(\w)y/$1O/
+    - xform/(\w)z/$1ING/
+    - xform/([acdkxz])V/$1I/
+    - xform/(\w)V/$1EI/
+    - xform/(^|[ '])a/$1Z/
+    - xform/(^|[ '])b/$1K/
+    - xform/(^|[ '])c/$1CH/
+    - xform/(^|[ '])d/$1C/
+    - xform/(^|[ '])f/$1D/
+    - xform/(^|[ '])g/$1T/
+    - xform/(^|[ '])h/$1N/
+    - xform/(^|[ '])i/$1W/
+    - xform/(^|[ '])j/$1L/
+    - xform/(^|[ '])k/$1J/
+    - xform/(^|[ '])l/$1-/
+    - xform/(^|[ '])m/$1H/
+    - xform/(^|[ '])n/$1NG/
+    - xform/(^|[ '])o/$1KW/
+    - xform/(^|[ '])p/$1GW/
+    - xform/(^|[ '])r/$1B/
+    - xform/(^|[ '])s/$1S/
+    - xform/(^|[ '])t/$1P/
+    - xform/(^|[ '])u/$1F/
+    - xform/(^|[ '])v/$1G/
+    - xform/(^|[ '])x/$1SH/
+    - xform/(^|[ '])y/$1M/
+    - xform/(^|[ '])z/$1ZH/
+    - xform/KW(I|O)NG/KWW$1NG/
+    - xform/(G)W(AAM|AAU|AM|AU|ENG|IM|IU|OE|OI|U|Y)/$1$2/
+    - xform/(K)W(AAM|AAU|AM|AU|E|I|O|U|Y)/$1$2/
+    - xform/WW/W/
+    - xform/([CSZ])H([AEIOUY])/$1$2/
+    - xform/MIMX/M̥M̩/
+    - xform/NGINGX/NG̥NG̩/
+    - xform/MIM/M̩/
+    - xform/NGING/NG̩/
+    - xform/MX/P/
+    - xform/NX/T/
+    - xform/NGX/K/
+    - xform/X/E/
+    - xform/¹/˥/
+    - xform/²/˧˥/
+    - xform/³/˧/
+    - xform/⁴/˨˩/
+    - xform/⁵/˩˧/
+    - xform/⁶/˨/
+    - xform/(\w)([PTK])/$1$2̚/
+    - xform/U(NG|K)/o$1/
+    - xform/I(NG|K)/e$1/
+    - xform/P̚/p̚/
+    - xform/T̚/t̚/
+    - xform/K̚/k̚/
+    - xform/EI/ei̯/
+    - xform/OU/ou̯/
+    - xform/(A)I/$1i̯/
+    - xform/([OU])I/$1y̯/
+    - xform/([AEI])U/$1u̯/
+    - xform/AA/aː/
+    - xform/EO/ɵ/
+    - xform/OE/œː/
+    - xform/YU/yː/
+    - xform/A/ɐ/
+    - xform/E/ɛː/
+    - xform/I/iː/
+    - xform/O/ɔː/
+    - xform/U/uː/
+    - xform/KW/kʷʰ/
+    - xform/GW/kʷ/
+    - xform/NG/ŋ/
+    - xform/([ZCS])(i|œ|ɵ|y|ɔ)/$1H$2/
+    - xform/SH/ʃ/
+    - xform/CH/t͡ʃʰ/
+    - xform/ZH/t͡ʃ/
+    - xform/(^|[ '])([CKPT])/$1$2ʰ/
+    - xlit/BDGZ/PTKC/
+    - xform/C/t͡s/
+    - "xlit/FHJKLMNPSTW-/fhjklmnpstwʔ/"
+  comment_format:
+    - xlit/abcdefghijklmnopqstuwyz/ABCDEFGHIJKLMNOPQSTUWYZ/
+    - xform/(^|[ '])H(M|NG)([1-6])/$1$2̥$2̩$3/
+    - xform/(^|[ '])(M|NG)([1-6])/$1$2̩$3/
+    - xform/1/˥/
+    - xform/2/˧˥/
+    - xform/3/˧/
+    - xform/4/˨˩/
+    - xform/5/˩˧/
+    - xform/6/˨/
+    - xform/(\w)([PTK])/$1$2̚/
+    - xform/^([AEIOUY])/-$1/
+    - xform/U(NG|K)/o$1/
+    - xform/I(NG|K)/e$1/
+    - xform/P̚/p̚/
+    - xform/T̚/t̚/
+    - xform/K̚/k̚/
+    - xform/EI/ei̯/
+    - xform/OU/ou̯/
+    - xform/(A)I/$1i̯/
+    - xform/([OU])I/$1y̯/
+    - xform/([AEI])U/$1u̯/
+    - xform/AA/aː/
+    - xform/EO/ɵ/
+    - xform/OE/œː/
+    - xform/YU/yː/
+    - xform/A/ɐ/
+    - xform/E/ɛː/
+    - xform/I/iː/
+    - xform/O/ɔː/
+    - xform/U/uː/
+    - xform/KW/kʷʰ/
+    - xform/GW/kʷ/
+    - xform/NG/ŋ/
+    - xform/([ZCS])(i|œ|ɵ|y|ɔ)/$1H$2/
+    - xform/SH/ʃ/
+    - xform/CH/t͡ʃʰ/
+    - xform/ZH/t͡ʃ/
+    - xform/(^|[ '])([CKPT])/$1$2ʰ/
+    - xlit/BDGZ/PTKC/
+    - xform/C/t͡s/
+    - "xlit/FHJKLMNPSTW-/fhjklmnpstwʔ/"
+
+reverse_lookup:
+  tag: reverse_lookup
+  prefix: "`"
+  suffix: ;
+  tips: 〔倉頡/普拼〕
+  closing_tips: 〔粤拼〕
+  extra_tags:
+    - pinyin_lookup
+    - cangjie5_lookup  
+
+pinyin:
+  tag: pinyin
+  dictionary: luna_pinyin
+  prefix: "`P"
+  suffix: ";"
+  preedit_format: &pinyin
+    - xform/([nl])v/$1ü/
+    - xform/([nl])ue/$1üe/
+    - xform/([jqxy])v/$1u/
+  tips: 〔普拼〕
+  closing_tips: 〔粤拼〕
+  initial_quality: 100	# 調整該編譯器出字優先度
+  
+cangjie5:
+  tag: cangjie5
+  dictionary: cangjie5
+  prefix: "`C"
+  suffix: ";"
+  tips: 〔倉頡〕
+  closing_tips: 〔粤拼〕
+  initial_quality: 100000	# 調整該編譯器出字優先度
+  
+pinyin_lookup:
+  tag: pinyin_lookup
+  dictionary: luna_pinyin
+#  enable_completion: true
+  prefix: "`P"
+  suffix: ";"
+  tips: 〔普拼〕
+
+cangjie5_lookup:
+  tag: cangjie5_lookup
+  dictionary: cangjie5
+#  enable_completion: true
+  prefix: "`C"
+  suffix: ";"
+  tips: 〔倉頡〕
+
+punctuator:
+  import_preset: default
+  full_shape:
+    '\' : '、'
+    '|' : [ ·, ｜, '§', '¦' , '\', ＼]
+  half_shape:
+    '\' : '、'
+    '|' :  [ ·, ・, '|', ｜, '§', '¦', '‖',  '\', ＼]
+
+key_binder:
+  import_preset: default
+
+recognizer:
+  import_preset: default
+  patterns:
+    reverse_lookup: "`[a-z]*;?$"
+    pinyin_lookup: "^`P[a-z]*;?$"
+    cangjie5_lookup: "^`C[a-z]*;?$"
