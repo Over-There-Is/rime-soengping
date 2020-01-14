@@ -1,6 +1,6 @@
 # 粤语双拼/KG KU XB TZ
 
-配方：℞ **`Over-There-Is/Rime-Soengping`**
+配方：℞ **`Over-There-Is/rime-soengping`**
 
 基于sgal、狸猫、刘邦后代等人粤拼词库嘅粤语双拼输入方案
 
@@ -136,4 +136,4 @@ zou cou sou sei se音节使用z c s按键。
 
   - [粵語拼音方案](https://github.com/rime/rime-cantonese ℞ **`cantonese`**
 
-[东风破](https://github.com/rime/plum)安装口令：`bash rime-install Over-There-Is/Rime-Soengping`
+[东风破](https://github.com/rime/plum)安装口令：`bash rime-install Over-There-Is/rime-soengping`
