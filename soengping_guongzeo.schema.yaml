@@ -2,8 +2,8 @@
 # encoding: utf-8
 
 schema:
-  schema_id: soengping_ipa
-  name: "粵語雙拼 IPA"
+  schema_id: soengping_guongzeo
+  name: "粵語雙拼 廣州拼音"
   version: "2020.01.14"
   author:
     - "sgal <1727246457@qq.com>"
@@ -11,8 +11,8 @@ schema:
     - "laubonghaudoi <laubonghaudoi@icloud.com>"
     - "Over-There-Is <1918301767@qq.com>"
   description: |
-    "基于sgalal、狸猫、刘邦后代等人粤拼词库的粤语双拼输入方案"
-    "採用國際音標"
+    "基於sgalal、狸貓、劉邦後代等人粵拼詞庫的粵語雙拼輸入方案"
+    "採用1960年廣東省教育行政部門廣州話拼音方案（修訂版）"
     "提供兩種反查方案，[`]鍵可以同時用倉頡及普拼反查粵拼，[`C]鍵單獨用倉頡反查粵拼，[`P]鍵單獨用普拼反查粵拼"
     "PC上按Ctrl+Enter可將提示音上屏，按Ctrl+Shift+Enter可將候選項上屏"
     "原項目主頁 https://github.com/rime/rime-cantonese"
@@ -30,7 +30,7 @@ switches:
     states: [ 中文, 英文 ]
   - name: full_shape
     states: [ 半角, 全角 ]
-  - name: simplification  # 若開啓多字形此段可註釋
+  - name: simplification
     states: [ 傳統, 简体 ]
   - name: extended_charset
     reset: 1
@@ -62,8 +62,8 @@ engine:
   translators:
     - script_translator@cangjie5
     - script_translator@pinyin
-    - reverse_lookup_translator@cangjie5_lookup
     - reverse_lookup_translator@pinyin_lookup
+    - reverse_lookup_translator@cangjie5_lookup
     - punct_translator
     - script_translator
     - reverse_lookup_translator
@@ -178,7 +178,7 @@ menu:
 
 translator:
   dictionary: jyut6ping3
-  prism: soengping_ipa
+  prism: soengping_guongzeo
   spelling_hints: 7  # 標註拼音的字數，建議橫排顯示時設置爲1
   preedit_format:
     - xform/(\w);/$1V/
@@ -262,91 +262,55 @@ translator:
     - xform/(K)W(AAM|AAU|AM|AU|E|I|O|U|Y)/$1$2/
     - xform/WW/W/
     - xform/([CSZ])H([AEIOUY])/$1$2/
-    - xform/MIMR/M̥M̩/
-    - xform/NGINGR/NG̥NG̩/
-    - xform/MIM/M̩/
-    - xform/NGING/NG̩/
-    - xform/MR/P̚/
-    - xform/NR/T̚/
-    - xform/NGR/K̚/
-    - xform/¹/˥/
-    - xform/²/˧˥/
-    - xform/³/˧/
-    - xform/⁴/˨˩/
-    - xform/⁵/˩˧/
-    - xform/⁶/˨/
-    - xform/U(NG|K)/o$1/
-    - xform/I(NG|K)/e$1/
-    - xform/P̚/p̚/
-    - xform/T̚/t̚/
-    - xform/K̚/k̚/
-    - xform/EI/ei̯/
-    - xform/OU/ou̯/
-    - xform/(A)I/$1i̯/
-    - xform/([OU])I/$1y̯/
-    - xform/([AEI])U/$1u̯/
-    - xform/AA/aː/
-    - xform/EO/ɵ/
-    - xform/OE/œː/
-    - xform/YU/yː/
-    - xform/A/ɐ/
-    - xform/E/ɛː/
-    - xform/I/iː/
-    - xform/O/ɔː/
-    - xform/U/uː/
-    - xform/KW/kʷʰ/
-    - xform/GW/kʷ/
-    - xform/NG/ŋ/
-    - xform/([ZCS])(i|œ|ɵ|y|ɔ)/$1H$2/
-    - xform/SH/ʃ/
-    - xform/CH/t͡ʃʰ/
-    - xform/ZH/t͡ʃ/
-    - xform/(^|[ '])([CKPT])/$1$2ʰ/
-    - xlit/BDGZ/PTKC/
-    - xform/C/t͡s/
-    - "xlit/FHJKLMNPRSTWX-/fhjklmnpEstwWʔ/"
+    - xform/MIMR/HM/
+    - xform/NGINGR/HNG/
+    - xform/MIM/M/
+    - xform/NGING/NG/
+    - xform/MR/P/
+    - xform/NR/T/
+    - xform/NGR/K/
+    - xform/-(\w)/$1/
+    - xlit/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopQEstuvwWyz/
+    - xform/([aeiou])p/$1b/
+    - xform/([aeiou])t/$1d/
+    - xform/([aeiou])k/$1g/
+    - xform/oe([dn])($|[¹²³⁴⁵⁶ '])/ö$1$2/
+    - xform/(eo|oe)/ê/
+    - xform/yu/ü/
+    - xform/e/é/
+    - xform/aa/A/
+    - xform/a/e/
+    - xform/A/a/
+    - xform/([aeé])u/$1o/
+    - xform/êi/êu/
+    - xform/([gk])w/$1u/
+    - xform/j/y/
+    - xform/z([hi]|ü)/j$1/
+    - xform/c([hi]|ü)/q$1/
+    - xform/s([hi]|ü)/x$1/
+    - xform/([jqx])h/$1/
+    - xform/([jqxy])ü/$1u/
   comment_format:
-    - xlit/abcdefghijklmnopqstuwyz/ABCDEFGHIJKLMNOPQSTUWYZ/
-    - xform/(^|[ '])H(M|NG)([1-6])/$1$2̥$2̩$3/
-    - xform/(^|[ '])(M|NG)([1-6])/$1$2̩$3/
-    - xform/1/˥/
-    - xform/2/˧˥/
-    - xform/3/˧/
-    - xform/4/˨˩/
-    - xform/5/˩˧/
-    - xform/6/˨/
-    - xform/(\w)([PTK])/$1$2̚/
-    - xform/(^|[ '])([AEIOUY])/$1-$2/
-    - xform/U(NG|K)/o$1/
-    - xform/I(NG|K)/e$1/
-    - xform/P̚/p̚/
-    - xform/T̚/t̚/
-    - xform/K̚/k̚/
-    - xform/EI/ei̯/
-    - xform/OU/ou̯/
-    - xform/(A)I/$1i̯/
-    - xform/([OU])I/$1y̯/
-    - xform/([AEI])U/$1u̯/
-    - xform/AA/aː/
-    - xform/EO/ɵ/
-    - xform/OE/œː/
-    - xform/YU/yː/
-    - xform/A/ɐ/
-    - xform/E/ɛː/
-    - xform/I/iː/
-    - xform/O/ɔː/
-    - xform/U/uː/
-    - xform/KW/kʷʰ/
-    - xform/GW/kʷ/
-    - xform/NG/ŋ/
-    - xform/([ZCS])(i|œ|ɵ|y|ɔ)/$1H$2/
-    - xform/SH/ʃ/
-    - xform/CH/t͡ʃʰ/
-    - xform/ZH/t͡ʃ/
-    - xform/(^|[ '])([CKPT])/$1$2ʰ/
-    - xlit/BDGZ/PTKC/
-    - xform/C/t͡s/
-    - "xlit/FHJKLMNPSTW-/fhjklmnpstwʔ/"
+    - xform/([aeiou])p/$1b/
+    - xform/([aeiou])t/$1d/
+    - xform/([aeiou])k/$1g/
+    - xform/oe([dn])($|[1-6 '])/ö$1$2/
+    - xform/(eo|oe)/ê/
+    - xform/yu/ü/
+    - xform/e/é/
+    - xform/aa/A/
+    - xform/a/e/
+    - xform/A/a/
+    - xform/([aeé])u/$1o/
+    - xform/êi/êu/
+    - xform/([gk])w/$1u/
+    - xform/j/y/
+    - xform/z([hi]|ü)/j$1/
+    - xform/c([hi]|ü)/q$1/
+    - xform/s([hi]|ü)/x$1/
+    - xform/([jqx])h/$1/
+    - xform/([jqxy])ü/$1u/
+    - xlit/123456/¹²³⁴⁵⁶/
 
 reverse_lookup:
   tag: reverse_lookup
@@ -370,7 +334,7 @@ pinyin:
   tips: 〔普拼〕
   closing_tips: 〔粤拼〕
   initial_quality: 100	# 調整該編譯器出字優先度
-  
+
 cangjie5:
   tag: cangjie5
   dictionary: cangjie5
@@ -379,7 +343,7 @@ cangjie5:
   tips: 〔倉頡〕
   closing_tips: 〔粤拼〕
   initial_quality: 100000	# 調整該編譯器出字優先度
-  
+
 pinyin_lookup:
   tag: pinyin_lookup
   dictionary: luna_pinyin
