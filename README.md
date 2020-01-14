@@ -1,12 +1,14 @@
-# 粤语双拼
+# 粤语双拼/KG KU XB TZ
 
-## 简介
+## 简介/VD VK
 
 基于sgal、狸猫、刘邦后代等人粤拼词库的粤语双拼输入方案
 
 原项目主页 https://github.com/rime/rime-cantonese
 
-## 编码方案
+## 编码方案/TA YR UN LF
+
+### 声母/XZ YU
 
 <table>
   <tr>
@@ -32,17 +34,21 @@
   </tr>
 </table>
 
-gu gui gun(t) kui音节使用gw kw按键
+gu gui gun(t) kui音节使用gw kw按键。
 
-gou geoi gon(t) keoi音节使用g k按键
+gou geoi gon(t) keoi音节使用g k按键。
 
-无开合口对立的音节两组按键互通
+无开合口对立的韵母之前两组按键互通。
 
-zyu cyu syu si soe音节使用zh ch sh按键
+为人为构造互补韵母音位，本方案强行拆分z c s与zh ch sh声母，与分韵撮要时期粤语的平翘舌无关。
 
-zou cou sou sei se音节使用z c s按键
+zyu cyu syu si soe音节使用zh ch sh按键。
 
-其他韵母前两组按键互通
+zou cou sou sei se音节使用z c s按键。
+
+其他韵母前两组按键互通。
+
+### 韵母/IS YU
 
 <table>
   <tr>
@@ -59,7 +65,7 @@ zou cou sou sei se音节使用z c s按键
     <td>A</td> <td>S</td> <td>D</td> <td>F</td> <td>G</td> <td>H</td> <td>J</td> <td>K</td> <td>L</td> <td>;</td>
   </tr>
   <tr align="center">
-    <td>in (en)</td> <td>an</td> <td>aan</td> <td>on un oen</td> <td>yun (oen)</td>
+    <td>in (en)</td> <td>an</td> <td>aan</td> <td>on un eon</td> <td>yun (oen)</td>
     <td>oi</td> <td>ui eoi</td> <td>aai</td> <td>ai</td> <td>i ei</td>
   </tr>
   <tr align="center">
@@ -70,7 +76,13 @@ zou cou sou sei se音节使用z c s按键
   </tr>
 </table>
 
-入声韵同阳声韵，括号内韵母可在韵码后补充一分号进行精确选字
+入声韵同阳声韵，括号内韵母可在韵码后补充一分号进行精确选字。
+
+除e/oe及带括号口语韵母外，其余同键位韵母基本互补。
+
+除粤拼z c s j声母以外，其他声母后两韵辖字均极少，并z c j不搭配oe。
+
+### 声调/XZ FP
 
 <table>
   <tr>
@@ -96,9 +108,19 @@ zou cou sou sei se音节使用z c s按键
   </tr>
 </table>
 
-声调用于辅助选字，可省略
+声调用于辅助选字，可省略。
 
-## 安装
+## 音标显示/KW RP MA X;
+
+方案内`soengping_ipa.schema.yaml`为音标显示版。
+
+音标显示区分舌叶音和舌尖音。预设为iː、yː、ɵy̯、œː、ɔː前显示为舌叶音，其他韵母前显示为舌尖音，可根据个人喜好进行调节。
+
+按本人习惯将ei ou和ing(k) ung(k)韵腹合并为e o。
+
+由于字体原因，两个相同调值的音调符号无法连接，故平调只使用一个音调符号。
+
+## 安装/KF AN
 
 本方案依賴於
 
