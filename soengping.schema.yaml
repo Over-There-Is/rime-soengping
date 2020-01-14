@@ -167,6 +167,8 @@ speller:
     - derive/^a([cdefhijklmnorstvwxy])/z$1/
     - derive/^d([cdefhijklmnorstvwxy])/c$1/
     - derive/^s([cdefhijklmnorsvwxy])/x$1/
+    - derive/^([a-z|;]{2});([eqw])/$1$2;/
+    - derive/^([a-z|;]{2});([eqw]{2})/$1$2;/
     - derive/^([a-z|;]{2}).+$/$1/
     - derive/^([a-z|;]{3}).+$/$1/
     - derive/^([a-z|;]{4}).+$/$1/
@@ -181,15 +183,17 @@ translator:
   spelling_hints: 7  # 標註拼音的字數，建議橫排顯示時設置爲1
   preedit_format:
     - xform/(\w);/$1V/
+    - xform/(\w\w)([eqw]{2})V/$1V$2/
+    - xform/(\w\w)([eqw])V/$1V$2/
     - xform/(\w\w)qq/$1¹/
     - xform/(\w\w)qw/$1²/
     - xform/(\w\w)qe/$1³/
     - xform/(\w\w)wq/$1⁴/
     - xform/(\w\w)ww/$1⁵/
     - xform/(\w\w)we/$1⁶/
-    - xform/(\w\w)eq/$1X¹/
-    - xform/(\w\w)ew/$1X³/
-    - xform/(\w\w)ee/$1X⁶/
+    - xform/(\w\w)eq/$1R¹/
+    - xform/(\w\w)ew/$1R³/
+    - xform/(\w\w)ee/$1R⁶/
     - xform/(\w\w)q/$1Q/
     - xform/(\w\w)w/$1X/
     - xform/(\w\w)e/$1R/
