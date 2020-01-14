@@ -317,7 +317,7 @@ translator:
     - xform/5/˩˧/
     - xform/6/˨/
     - xform/(\w)([PTK])/$1$2̚/
-    - xform/(^|[ '])([AEIOUY])/$1$2/
+    - xform/(^|[ '])([AEIOUY])/$1-$2/
     - xform/U(NG|K)/o$1/
     - xform/I(NG|K)/e$1/
     - xform/P̚/p̚/
