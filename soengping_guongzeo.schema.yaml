@@ -13,7 +13,7 @@ schema:
   description: |
     "基於sgalal、狸貓、劉邦後代等人粵拼詞庫的粵語雙拼輸入方案"
     "採用1960年廣東省教育行政部門廣州話拼音方案（修訂版）"
-    "提供兩種反查方案，[`]鍵可以同時用倉頡及普拼反查粵拼，[`C]鍵單獨用倉頡反查粵拼，[`P]鍵單獨用普拼反查粵拼"
+    "提供三種反查方案，Q鍵用粵拼反查簡拼碼及廣拼，W鍵用普拼反查簡拼碼及廣拼，E鍵用倉頡反查簡拼碼及廣拼"
     "PC上按Ctrl+Enter可將提示音上屏，按Ctrl+Shift+Enter可將候選項上屏"
     "原項目主頁 https://github.com/rime/rime-cantonese"
     "雙拼項目主頁 https://github.com/Over-There-Is/Rime-Soengping/"
@@ -50,28 +50,24 @@ engine:
     - express_editor
   segmentors:
     - matcher
+    - affix_segmentor@jyut6ping3
+    - affix_segmentor@luna_pinyin
     - affix_segmentor@cangjie5
-    - affix_segmentor@pinyin
-    - affix_segmentor@reverse_lookup
-    - affix_segmentor@cangjie5_lookup
-    - affix_segmentor@pinyin_lookup
     - ascii_segmentor
     - abc_segmentor
     - punct_segmentor
     - fallback_segmentor
   translators:
-    - script_translator@cangjie5
-    - script_translator@pinyin
-    - reverse_lookup_translator@pinyin_lookup
-    - reverse_lookup_translator@cangjie5_lookup
     - punct_translator
     - script_translator
     - reverse_lookup_translator
+    - script_translator@jyut6ping3
+    - script_translator@luna_pinyin
+    - table_translator@cangjie5
   filters:
     - simplifier
     - uniquifier
-    - reverse_lookup_filter@cangjie5_reverse_lookup
-    - reverse_lookup_filter@pinyin_reverse_lookup
+    - reverse_lookup_filter@reverse_lookup
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcba;
@@ -312,53 +308,154 @@ translator:
     - xform/([jqxy])ü/$1u/
     - xlit/123456/¹²³⁴⁵⁶/
 
-reverse_lookup:
-  tag: reverse_lookup
-  prefix: "`"
+jyut6ping3:
+  tag: jyut6ping3
+  dictionary: jyut6ping3
+  prefix: "q"
   suffix: ;
-  tips: 〔倉頡/普拼〕
-  closing_tips: 〔粤拼〕
-  extra_tags:
-    - pinyin_lookup
-    - cangjie5_lookup  
+  preedit_format:
+    - xform/([aeioumngptk])vv/$1⁴/
+    - xform/([aeioumngptk])xx/$1⁵/
+    - xform/([aeioumngptk])qq/$1⁶/
+    - xform/([aeioumngptk])v/$1¹/
+    - xform/([aeioumngptk])x/$1²/
+    - xform/([aeioumngptk])q/$1³/
+  tips: 〔粵拼〕
+  closing_tips: 〔雙拼〕
 
-pinyin:
-  tag: pinyin
+luna_pinyin:
+  tag: luna_pinyin
   dictionary: luna_pinyin
-  prefix: "`P"
+  enable_user_dict: false
+  prefix: "w"
   suffix: ";"
-  preedit_format: &pinyin
+  tips: 〔普拼〕
+  closing_tips: 〔雙拼〕
+  preedit_format:
     - xform/([nl])v/$1ü/
     - xform/([nl])ue/$1üe/
     - xform/([jqxy])v/$1u/
-  tips: 〔普拼〕
-  closing_tips: 〔粤拼〕
-  initial_quality: 100	# 調整該編譯器出字優先度
 
 cangjie5:
   tag: cangjie5
   dictionary: cangjie5
-  prefix: "`C"
+  enable_user_dict: false
+  prefix: "e"
   suffix: ";"
-  tips: 〔倉頡〕
-  closing_tips: 〔粤拼〕
-  initial_quality: 100000	# 調整該編譯器出字優先度
+  tips: 〔倉頡五代〕
+  closing_tips: 〔雙拼〕
+  preedit_format:
+    - 'xform/^([a-z]*)$/$1\t（\U$1\E）/'
+    - "xlit|ABCDEFGHIJKLMNOPQRSTUVWXYZ|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符|"
+  comment_format:
+    - "xlit|abcdefghijklmnopqrstuvwxyz~|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符～|"
+  disable_user_dict_for_patterns:
+    - "^z.*$"
+    - "^yyy.*$"
 
-pinyin_lookup:
-  tag: pinyin_lookup
-  dictionary: luna_pinyin
-#  enable_completion: true
-  prefix: "`P"
-  suffix: ";"
-  tips: 〔普拼〕
-
-cangjie5_lookup:
-  tag: cangjie5_lookup
-  dictionary: cangjie5
-#  enable_completion: true
-  prefix: "`C"
-  suffix: ";"
-  tips: 〔倉頡〕
+reverse_lookup:
+  tags:  [luna_pinyin, jyut6ping3, cangjie5]
+  overwrite_comment: true
+  dictionary: jyut6ping3
+  comment_format:
+    - 'xform/(^| )([a-z1-6]*)/$1\U$2\E\t（$2)/'
+    - xform/([AEIOU])P/$1B/
+    - xform/([AEIOU])T/$1D/
+    - xform/([AEIOU])K/$1G/
+    - xform/OE([DN])($|[1-6 '])/ö$1$2/
+    - xform/(EO|OE)/ê/
+    - xform/YU/ü/
+    - xform/E/é/
+    - xform/AA/R/
+    - xform/A/E/
+    - xform/R/A/
+    - xform/([AEé])U/$1O/
+    - xform/êI/êU/
+    - xform/([GK])W/$1U/
+    - xform/J/Y/
+    - xform/Z([HI]|ü)/J$1/
+    - xform/C([HI]|ü)/Q$1/
+    - xform/S([HI]|ü)/X$1/
+    - xform/([JQX])H/$1/
+    - xform/([JQXY])ü/$1U/
+    - xform/（(m|ng)([1-6])/（$1i$1$2/
+    - xform/（h(m|ng)([1-6])/（$1i$1E$2/
+    - xform/p([1-6])/mR$1/
+    - xform/t([1-6])/nR$1/
+    - xform/k([1-6])/ngR$1/
+    - xform/R([12])/EQ/
+    - xform/R3/EW/
+    - xform/R6/EE/
+    - xform/([a-z])1/$1QQ/
+    - xform/([a-z])2/$1QW/
+    - xform/([a-z])3/$1QE/
+    - xform/([a-z])4/$1WQ/
+    - xform/([a-z])5/$1WW/
+    - xform/([a-z])6/$1WE/
+    - xform/（([aeiouy])/（L$1/
+    - xform/（b/（R/
+    - xform/（p/（T/
+    - xform/（m/（Y/
+    - xform/（f/（U/
+    - xform/（d/（F/
+    - xform/（t/（G/
+    - xform/（n([aeiouy])/（H$1/
+    - xform/（l/（J/
+    - xform/（g([aeioy])/（V$1/
+    - xform/（k([aeioy])/（B$1/
+    - xform/（g(u)/（P$1/
+    - xform/（k(u)/（O$1/
+    - xform/（ng/（N/
+    - xform/（h/（M/
+    - xform/（gw/（P/
+    - xform/（kw/（O/
+    - xform/（w/（I/
+    - xform/（z([iy]|oe)/（Z$1/
+    - xform/（c([iy]|oe)/（C$1/
+    - xform/（s([iy]|oe)/（X$1/
+    - xform/（z([aeou])/（A$1/
+    - xform/（c([aeou])/（D$1/
+    - xform/（s([aeou])/（S$1/
+    - xform/（j/（K/
+    - xform/aang/C/
+    - xform/oeng/B/
+    - xform/aai/K/
+    - xform/aam/E/
+    - xform/aan/D/
+    - xform/aau/I/
+    - xform/ang/X/
+    - xform/eng/V/
+    - xform/eoi/J/
+    - xform/eon/F/
+    - xform/ing/Z/
+    - xform/oen/G;/
+    - xform/ong/N/
+    - xform/ung/M/
+    - xform/yun/G/
+    - xform/aa/R/
+    - xform/ai/L/
+    - xform/am/W/
+    - xform/an/S/
+    - xform/au/O/
+    - xform/ei/;/
+    - xform/em/Q;/
+    - xform/en/A;/
+    - xform/eu/P;/
+    - xform/im/Q/
+    - xform/in/A/
+    - xform/iu/P/
+    - xform/oe/T/
+    - xform/oi/H/
+    - xform/on/F/
+    - xform/ou/U/
+    - xform/ui/J/
+    - xform/un/F/
+    - xform/yu/U/
+    - xform/e/T/
+    - xform/i/;/
+    - xform/o/Y/
+    - xform/u/U/
+    - xlit/ABCDEFGHIJKLMNOPQRSTUVWXYZ（123456/abcdefghijklmnopqrstuvwxyz(¹²³⁴⁵⁶/
 
 punctuator:
   import_preset: default
@@ -375,6 +472,6 @@ key_binder:
 recognizer:
   import_preset: default
   patterns:
-    reverse_lookup: "`[a-z]*;?$"
-    pinyin_lookup: "^`P[a-z]*;?$"
-    cangjie5_lookup: "^`C[a-z]*;?$"
+    jyut6ping3: "^q[a-z]*;?$"
+    luna_pinyin: "^w[a-z]*'?$"
+    cangjie5: "^e[a-z]*'?$"
