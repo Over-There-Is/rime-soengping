@@ -14,7 +14,7 @@ schema:
     "基於sgalal、狸貓、劉邦後代等人粵拼詞庫的粵語雙拼輸入方案"
     "採用『1993年香港語言學學會粵語拼音方案』"
     "https://www.lshk.org/jyutping"
-    "提供兩種反查方案，[`]鍵可以同時用倉頡及普拼反查粵拼，[`C]鍵單獨用倉頡反查粵拼，[`P]鍵單獨用普拼反查粵拼"
+    "提供三種反查方案，Q鍵用全拼反查簡拼碼，W鍵用普拼反查粵拼，E鍵用倉頡反查粵拼"
     "PC上按Ctrl+Enter可將提示音上屏，按Ctrl+Shift+Enter可將候選項上屏"
     "原項目主頁 https://github.com/rime/rime-cantonese"
     "雙拼項目主頁 https://github.com/Over-There-Is/Rime-Soengping/"
@@ -319,7 +319,7 @@ reverse_lookup:
   overwrite_comment: true
   dictionary: jyut6ping3
   comment_format:
-    - 'xform/(^| )([a-z1-6]*)/$1\U$2\E\t（$2）/'
+    - 'xform/(^| )([a-z1-6]*)/$1\U$2\E\t（$2)/'
     - xform/（(m|ng)([1-6])/（$1i$1$2/
     - xform/（h(m|ng)([1-6])/（$1i$1E$2/
     - xform/p([1-6])/mR$1/
