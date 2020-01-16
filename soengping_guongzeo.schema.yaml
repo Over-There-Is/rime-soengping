@@ -16,7 +16,7 @@ schema:
     "提供三種反查方案，Q鍵用粵拼反查簡拼碼及廣拼，W鍵用普拼反查簡拼碼及廣拼，E鍵用倉頡反查簡拼碼及廣拼"
     "PC上按Ctrl+Enter可將提示音上屏，按Ctrl+Shift+Enter可將候選項上屏"
     "原項目主頁 https://github.com/rime/rime-cantonese"
-    "雙拼項目主頁 https://github.com/Over-There-Is/Rime-Soengping/"
+    "雙拼項目主頁 https://github.com/Over-There-Is/rime-soengping/"
     "碼表詳見主頁"
   dependencies:
     - cangjie5
