@@ -1,0 +1,56 @@
+patch:
+
+  "preset_keyboards/soengping":
+    name: 雙拼鍵盤
+    author: "Over-There-Is <1918301767@qq.com>"
+    ascii_mode: 0
+    width: 10
+    height: 44
+    lock: true #切換程序時記憶鍵盤
+    keys:
+    - {click: '1', long_click: '!'}
+    - {click: '2', long_click: '@'}
+    - {click: '3', long_click: '#'}
+    - {click: '4', long_click: '$'}
+    - {click: '5', long_click: '%'}
+    - {click: '6', long_click: '^'}
+    - {click: '7', long_click: '&'}
+    - {click: '8', long_click: '*'}
+    - {click: '9', long_click: '('}
+    - {click: '0', long_click: ')'}
+    - {label: '陰', click: 'q', long_click: '_', hint: 'im'}
+    - {label: '陽', click: 'w', long_click: '-', hint: 'am'}
+    - {label: '入', click: 'e', long_click: '+', hint: 'aam'}
+    - {label: 'B', click: 'r', long_click: '=', hint: 'aa'}
+    - {label: 'P', click: 't', long_click: '|', hint: 'e'}
+    - {label: 'M', click: 'y', long_click: '\', hint: 'o'}
+    - {label: 'F', click: 'u', long_click: '[', hint: 'u'}
+    - {label: 'W', click: 'i', long_click: ']', hint: 'aau'}
+    - {label: 'KW', click: 'o', long_click: '{', hint: 'au'}
+    - {label: 'GW', click: 'p', long_click: '}', hint: 'iu'}
+    - {label: 'Z', click: 'a', long_click: select_all, hint: 'in'}
+    - {label: 'S', click: 's', long_click: Home, hint: 'an'}
+    - {label: 'C', click: 'd', long_click: End, hint: 'aan'}
+    - {label: 'D', click: 'f', long_click: Page_Up, hint: 'un'}
+    - {label: 'T', click: 'g', long_click: Page_Down, hint: 'yun'}
+    - {label: 'N', click: 'h', long_click: Left, hint: 'oi'}
+    - {label: 'L', click: 'j', long_click: Down, hint: 'ui'}
+    - {label: 'J', click: 'k', long_click: Up, hint: 'aai'}
+    - {label: '0', click: 'l', long_click: Right, hint: 'ai'}
+    - {label: ';', click: ';', long_click: ':', hint: 'i'}
+    - {label: 'ZH', click: 'z', long_click: '`', hint: 'ing'}
+    - {label: 'SH', click: 'x', long_click: cut, hint: 'ang'}
+    - {label: 'CH', click: 'c', long_click: copy, hint: 'aang'}
+    - {label: 'G', click: 'v', long_click: paste, hint: 'eng'}
+    - {label: 'K', click: 'b', long_click: '~', hint: 'oeng'}
+    - {label: 'NG', click: 'n', long_click: Insert, hint: 'ong'}
+    - {label: 'H', click: 'm', long_click: Delete, hint: 'ung'}
+    - {label: '，', click: ',', long_click: '<'}
+    - {label: '。', click: '.', long_click: '>'}
+    - {click: '/', long_click: '?'}
+    - {click: Shift_L}
+    - {click: Keyboard_symbols, long_click: Keyboard_number}
+    - {click: Mode_switch, long_click: Menu}
+    - {click: space, long_click: DeleteCandidate, width: 40}
+    - {click: BackSpace, width: 15}
+    - {click: Return, long_click: CommitComment, width: 15}
