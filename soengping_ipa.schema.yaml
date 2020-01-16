@@ -356,7 +356,7 @@ jyut6ping3:
     - xform/([aeioumngptk])v/$1¹/
     - xform/([aeioumngptk])x/$1²/
     - xform/([aeioumngptk])q/$1³/
-  tips: 〔全拼〕
+  tips: 〔粵拼〕
   closing_tips: 〔雙拼〕
 
 luna_pinyin:
