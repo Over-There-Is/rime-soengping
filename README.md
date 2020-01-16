@@ -130,6 +130,10 @@ zou cou sou sei se音节使用z c s按键。
 
 广州拼音入边所缺嘅粤拼韵母eu em(p) en(t) oen(t)显示为éo ém(b) én(d) ön(d)。
 
+## 反查/UD DR
+
+Q键使用粤拼反查。W键使用普通话（朙月拼音)反查。E键使用仓颉五代反查。
+
 ## 安装/KF AN
 
 本方案依赖于
@@ -137,3 +141,5 @@ zou cou sou sei se音节使用z c s按键。
   - [粵語拼音方案](https://github.com/rime/rime-cantonese ℞ **`cantonese`**
 
 [东风破](https://github.com/rime/plum)安装口令：`bash rime-install Over-There-Is/rime-soengping`
+
+建议喺词库入边对`- jyut6ping3.lettered`一行进行注释屏蔽。
