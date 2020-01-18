@@ -138,7 +138,7 @@ Q键使用粤拼反查。W键使用普通话（朙月拼音）反查。E键使�
 
 本方案依赖于
 
-  - [粵語拼音方案](https://github.com/rime/rime-cantonese ℞ **`cantonese`**
+  - [粵語拼音方案](https://github.com/rime/rime-cantonese) ℞ **`cantonese`**
 
 [东风破](https://github.com/rime/plum)安装口令：`bash rime-install Over-There-Is/rime-soengping`
 
