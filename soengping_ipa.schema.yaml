@@ -4,7 +4,7 @@
 schema:
   schema_id: soengping_ipa
   name: "粵語雙拼 IPA"
-  version: "2020.01.14"
+  version: "2020.01.19"
   author:
     - "sgal <1727246457@qq.com>"
     - "LeiMaau <leimaau@qq.com>"
@@ -228,7 +228,7 @@ translator:
     - xform/(\w)x/$1ANG/
     - xform/(\w)y/$1O/
     - xform/(\w)z/$1ING/
-    - xform/([acdkxz])V/$1I/
+    - xform/([acdgkpxz])V/$1I/
     - xform/(\w)V/$1EI/
     - xform/(^|[ '])a/$1Z/
     - xform/(^|[ '])b/$1K/
