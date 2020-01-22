@@ -74,6 +74,7 @@ speller:
   initials: zyxvutsrponmlkjihgfdcba
   delimiter: " '"
   algebra:
+    - erase/^.*[a-z]$/
     - xform/^(m|ng)([1-6])/$1i$1$2/
     - xform/^h(m|ng)([1-6])/$1i$1E$2/
     - xform/p([1-6])/mE$1/
@@ -164,9 +165,9 @@ speller:
     - derive/^s([cdefhijklmnorsvwxy])/x$1/
     - derive/^([a-z|;]{2});([eqw])/$1$2;/
     - derive/^([a-z|;]{2});([eqw]{2})/$1$2;/
-    - derive/^([a-z|;]{2}).+$/$1/
-    - derive/^([a-z|;]{3}).+$/$1/
-    - derive/^([a-z|;]{4}).+$/$1/
+    - abbrev/^([a-z|;]{2}).+$/$1/
+    - abbrev/^([a-z|;]{3}).+$/$1/
+    - abbrev/^([a-z|;]{4}).+$/$1/
 
 menu:
   alternative_select_keys: "123456789"
