@@ -4,7 +4,7 @@
 schema:
   schema_id: soengping_ipa
   name: "粵語雙拼 IPA"
-  version: "2020.01.19"
+  version: "2020.01.27"
   author:
     - "sgal <1727246457@qq.com>"
     - "LeiMaau <leimaau@qq.com>"
@@ -129,11 +129,11 @@ speller:
     - xform/ong/N/
     - xform/ung/M/
     - xform/yun/G/
+    - xform/aa/R/
     - xform/ai/L/
     - xform/am/W/
     - xform/an/S/
     - xform/au/O/
-    - xform/aa?/R/
     - xform/ei/;/
     - xform/em/Q;/
     - xform/en/A;/
@@ -148,6 +148,7 @@ speller:
     - xform/ui/J/
     - xform/un/F/
     - xform/yu/U/
+    - xform/a/R;/
     - xform/e/T/
     - xform/i/;/
     - xform/o/Y/
@@ -217,6 +218,7 @@ translator:
     - xform/(\w)p/$1IU/
     - xform/(\w)qV/$1EM/
     - xform/(\w)q/$1IM/
+    - xform/(\w)rV/$1A/
     - xform/(\w)r/$1AA/
     - xform/(\w)s/$1AN/
     - xform/([gx])t/$1OE/
@@ -506,6 +508,7 @@ reverse_lookup:
     - xform/ui/J/
     - xform/un/F/
     - xform/yu/U/
+    - xform/a/R;/
     - xform/e/T/
     - xform/i/;/
     - xform/o/Y/
