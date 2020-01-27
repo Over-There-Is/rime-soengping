@@ -129,11 +129,11 @@ speller:
     - xform/ong/N/
     - xform/ung/M/
     - xform/yun/G/
-    - xform/aa/R/
     - xform/ai/L/
     - xform/am/W/
     - xform/an/S/
     - xform/au/O/
+    - xform/aa?/R/
     - xform/ei/;/
     - xform/em/Q;/
     - xform/en/A;/
