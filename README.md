@@ -60,7 +60,7 @@ zou cou sou sei se音节使用z c s按键。
     <td>Q</td> <td>W</td> <td>E</td> <td>R</td> <td>T</td> <td>Y</td> <td>U</td> <td>I</td> <td>O</td> <td>P</td>
   </tr>
   <tr align="center">
-    <td>im (em)</font></td> <td>am</td> <td>aam</td> <td>aa</td> <td>e oe</td>
+    <td>im (em)</font></td> <td>am</td> <td>aam</td> <td>aa (a)</td> <td>e oe</td>
     <td>o</td> <td>u ou yu</td> <td>aau</td> <td>au</td> <td>iu (eu)</td>
   </tr>
   <tr align="center">
