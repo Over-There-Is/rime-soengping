@@ -128,7 +128,7 @@ zou cou sou sei se音节使用z c s按键。
 
 方案内`soengping_guongzeo.schema.yaml`为广州拼音显示版。（娱乐功能）
 
-广州拼音入边所缺嘅粤拼韵母eu em(p) en(t) oen(t)显示为éo ém(b) én(d) ön(d)。
+广州拼音入边所缺嘅粤拼韵母a eu em(p) en(t) oen(t)显示为e éo ém(b) én(d) ön(d)。
 
 ## 反查/UD DR
 
